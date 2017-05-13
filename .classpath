@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC Drivers"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MapStruct">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="~libraries/mapstruct"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/contacts-commun">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="contacts-commun"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/~libraries/mapstruct/mapstruct-jdk8-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="/~libraries/mapstruct/mapstruct-processor-1.1.0.Final.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
