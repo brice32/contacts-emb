@@ -58,12 +58,13 @@ public class DaoAnnonce implements IDaoAnnonce{
 			stmt.setString(13, annonce.getLieuAdresse());
 			stmt.setString(14, annonce.getLieuCp());
 			stmt.setString(15, annonce.getLieuVille());
-			stmt.setString(16, annonce.getOrganisateurNom());
-			stmt.setString(17, annonce.getOrganisateurSiteWeb());
-			stmt.setString(18, annonce.getOrganisateurEmail());
-			stmt.setString(19, annonce.getOrganisateurTelephone());
-			stmt.setString(20, annonce.getAnimateurNom());
-			stmt.setString(21, annonce.getAnimateurQualification());
+			stmt.setString(16, annonce.getAnimateurNom());
+			stmt.setString(17, annonce.getAnimateurQualification());
+			stmt.setString(18, annonce.getOrganisateurNom());
+			stmt.setString(19, annonce.getOrganisateurSiteWeb());
+			stmt.setString(20, annonce.getOrganisateurEmail());
+			stmt.setString(21, annonce.getOrganisateurTelephone());
+
 			stmt.setInt(   22, annonce.getIdAnnonce() );
 			stmt.executeUpdate();
 
@@ -111,12 +112,13 @@ public class DaoAnnonce implements IDaoAnnonce{
 			stmt.setString(13, annonce.getLieuAdresse());
 			stmt.setString(14, annonce.getLieuCp());
 			stmt.setString(15, annonce.getLieuVille());
-			stmt.setString(16, annonce.getOrganisateurNom());
-			stmt.setString(17, annonce.getOrganisateurSiteWeb());
-			stmt.setString(18, annonce.getOrganisateurEmail());
-			stmt.setString(19, annonce.getOrganisateurTelephone());
-			stmt.setString(20, annonce.getAnimateurNom());
-			stmt.setString(21, annonce.getAnimateurQualification());
+			stmt.setString(16, annonce.getAnimateurNom());
+			stmt.setString(17, annonce.getAnimateurQualification());
+			stmt.setString(18, annonce.getOrganisateurNom());
+			stmt.setString(19, annonce.getOrganisateurSiteWeb());
+			stmt.setString(20, annonce.getOrganisateurEmail());
+			stmt.setString(21, annonce.getOrganisateurTelephone());
+
 			stmt.setInt(   22, annonce.getIdAnnonce() );
 			stmt.executeUpdate();
 
@@ -126,6 +128,30 @@ public class DaoAnnonce implements IDaoAnnonce{
 			try { if (stmt != null) stmt.close();} catch (SQLException e) {}
 			try { if (cn != null) cn.close();} catch (SQLException e) {}
 		}
+	}
+
+	@Override
+	public void supprimer(int idAnnonce) {
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		String 				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			// Supprime le compte
+			sql = "DELETE FROM Annonce WHERE idAnnonce = ? ";
+			stmt = cn.prepareStatement(sql);
+			stmt.setInt( 1, idAnnonce );
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			try { if (stmt != null) stmt.close();} catch (SQLException e) {}
+			try { if (cn != null) cn.close();} catch (SQLException e) {}
+		}
+
 	}
 
 	@Override

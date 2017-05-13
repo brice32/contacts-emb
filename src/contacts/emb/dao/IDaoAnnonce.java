@@ -15,4 +15,6 @@ public interface IDaoAnnonce {
 
 	void modifier(Annonce annonce);
 
+	void supprimer(int idAnnonce);
+
 }

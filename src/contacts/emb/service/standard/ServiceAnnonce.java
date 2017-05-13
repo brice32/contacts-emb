@@ -51,7 +51,71 @@ public class ServiceAnnonce implements IServiceAnnonce {
 		this.daoAnnonce = daoAnnonce;
 	}
 
+	@Override
+	public int inserer(DtoAnnonce dtoAnnonce) throws ExceptionAppli {
+		// TODO Auto-generated method stub
+		try {
+		managerSecurite.verifierAutorisationSecretaire();
 
+		managerTransaction.begin();
+		try {
+			int id = daoAnnonce.inserer( mapper.map( dtoAnnonce ) );
+			managerTransaction.commit();
+			return id;
+		} catch (Exception e) {
+			managerTransaction.rollback();
+			throw e;
+		}
+
+	} catch (RuntimeException e) {
+		logger.log( Level.SEVERE, e.getMessage(), e );
+		throw new ExceptionAnomalie(e);
+	}
+	}
+
+	@Override
+	public void modifier(DtoAnnonce dtoannonce) throws ExceptionAppli {
+		try {
+
+			managerSecurite.verifierAutorisationSecretaire();
+
+			managerTransaction.begin();
+			try {
+				daoAnnonce.modifier( mapper.map( dtoannonce ) );
+				managerTransaction.commit();
+			} catch (Exception e) {
+				managerTransaction.rollback();
+				throw e;
+			}
+
+		} catch (RuntimeException e) {
+			logger.log( Level.SEVERE, e.getMessage(), e );
+			throw new ExceptionAnomalie(e);
+		}
+
+	}
+
+	@Override
+	public void supprimer(int idAnnonce) throws ExceptionAppli {
+	try {
+
+			managerSecurite.verifierAutorisationSecretaire();
+
+			managerTransaction.begin();
+			try {
+				daoAnnonce.supprimer(idAnnonce);
+				managerTransaction.commit();
+			} catch (Exception e) {
+				managerTransaction.rollback();
+				throw e;
+			}
+
+		} catch (RuntimeException e) {
+			logger.log( Level.SEVERE, e.getMessage(), e );
+			throw new ExceptionAnomalie(e);
+		}
+
+	}
 
 	@Override
 	public DtoAnnonce retrouver(int idAnnonce) throws ExceptionAppli {
